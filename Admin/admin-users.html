@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - Admin Portal</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="admin-users.html" class="nav-item active">
+                <i class="fas fa-users"></i>
+                <span>Manage Users</span>
+            </a>
+            <a href="admin-courses.html" class="nav-item">
+                <i class="fas fa-book"></i>
+                <span>Manage Courses</span>
+            </a>
+            <a href="admin-reports.html" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="admin-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <div class="user-name" id="adminName">Admin User</div>
+                    <div class="user-role">Admin</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Manage Users</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list" id="notificationList">
+                            <!-- Notifications loaded dynamically -->
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Manage Users Page Content -->
+        <div class="page" id="usersPage">
+            <div class="users-content-section">
+                <div class="section-title-bar">
+                    <div>
+                        <h3 class="section-title">User Management</h3>
+                        <p class="section-subtitle">Manage all users in the system</p>
+                    </div>
+                    <button class="btn btn-primary" id="addUserModalBtn">
+                        <i class="fas fa-plus"></i>
+                        Add User
+                    </button>
+                </div>
+
+                <div class="users-search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="userSearch" placeholder="Search users by name, email, or role...">
+                </div>
+
+                <div class="users-table-card">
+                    <div class="table-container">
+                        <table class="users-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-container" id="usersPagination">
+                        <div class="pagination-info">
+                            <span id="paginationInfo">Showing 0 of 0 users</span>
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" id="prevPageBtn">Previous</button>
+                            <div id="paginationNumbers" style="display: flex; gap: 5px;">
+                                <!-- Dynamic page numbers -->
+                            </div>
+                            <button class="pagination-btn" id="nextPageBtn">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit User -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="userModalTitle">Create New User</h2>
+                <button class="modal-close" id="closeUserModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="userForm">
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" id="userName" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" id="userEmail" placeholder="Enter email address" required>
+                </div>
+                <div class="form-group">
+                    <label>Role <span class="required">*</span></label>
+                    <select id="userRole" required>
+                        <option value="">Select Role</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+                <div class="form-group" id="passwordGroup">
+                    <label>Password <span class="required">*</span></label>
+                    <input type="password" id="userPassword" placeholder="Enter password">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submitUserBtn">Create User</button>
+                    <button type="button" class="btn btn-secondary" id="cancelUserBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="admin-users-script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - School Management</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html" class="nav-item active">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="admin-users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Manage Users</span>
+            </a>
+            <a href="admin-courses.html" class="nav-item">
+                <i class="fas fa-book"></i>
+                <span>Manage Courses</span>
+            </a>
+            <a href="admin-reports.html" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="admin-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <div class="user-name" id="adminName">Admin User</div>
+                    <div class="user-role">Admin</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list" id="notificationList">
+                            <!-- Notifications loaded dynamically -->
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Page -->
+        <div class="page" id="dashboardPage">
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-label">Total Students</div>
+                        <div class="stat-value" id="totalStudents">0</div>
+                        <div class="stat-change positive" id="studentChange">+12% from last month</div>
+                    </div>
+                    <div class="stat-icon blue">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-label">Total Teachers</div>
+                        <div class="stat-value" id="totalTeachers">0</div>
+                        <div class="stat-change positive" id="teacherChange">+5 new this month</div>
+                    </div>
+                    <div class="stat-icon green">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-label">Active Courses</div>
+                        <div class="stat-value" id="totalCourses">0</div>
+                        <div class="stat-change neutral" id="courseChange">3 pending approval</div>
+                    </div>
+                    <div class="stat-icon orange">
+                        <i class="fas fa-book"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-label">Attendance Alerts</div>
+                        <div class="stat-value" id="attendanceAlerts">23</div>
+                        <div class="stat-change warning" id="alertChange">Requires attention</div>
+                    </div>
+                    <div class="stat-icon red">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="content-grid">
+                <!-- Attendance Trends -->
+                <div class="card attendance-trends">
+                    <div class="card-header">
+                        <h2>Attendance Trends</h2>
+                    </div>
+                    <div class="chart-container">
+                        <div class="bar-chart" id="attendanceChart">
+                            <!-- Chart bars will be generated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card quick-actions">
+                    <div class="card-header">
+                        <h2>Quick Actions</h2>
+                    </div>
+                    <div class="actions-list">
+                        <button class="action-button primary" id="addUserBtn">
+                            <i class="fas fa-user-plus"></i>
+                            Add New User
+                        </button>
+                        <button class="action-button secondary" id="createCourseBtn">
+                            <i class="fas fa-plus"></i>
+                            Create Course
+                        </button>
+                        <button class="action-button secondary" id="generateReportBtn">
+                            <i class="fas fa-file-alt"></i>
+                            Generate Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Attendance Alerts -->
+            <div class="card attendance-alerts">
+                <div class="card-header">
+                    <h2>Recent Attendance Alerts</h2>
+                    <a href="#" class="view-all" id="viewAllAlerts">View All</a>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Course</th>
+                                <th>Attendance</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alertsTableBody">
+                            <!-- Alerts loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="admin-dashboard-script.js"></script>
+</body>
+
+</html>

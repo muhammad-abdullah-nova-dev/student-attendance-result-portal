@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Admin Portal</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="admin-users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Manage Users</span>
+            </a>
+            <a href="admin-courses.html" class="nav-item">
+                <i class="fas fa-book"></i>
+                <span>Manage Courses</span>
+            </a>
+            <a href="admin-reports.html" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="admin-settings.html" class="nav-item active">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <div class="user-name" id="adminName">Admin User</div>
+                    <div class="user-role">Admin</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Settings</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list" id="notificationList">
+                            <!-- Notifications loaded dynamically -->
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Settings Page Content -->
+        <div class="page" id="settingsPage">
+            <!-- Profile Settings -->
+            <div class="card settings-card">
+                <div class="card-header">
+                    <h2>Profile Settings</h2>
+                </div>
+                <form id="profileForm" class="settings-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Admin">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="User">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="admin@portal.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="+1 (555) 123-4567">
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </form>
+            </div>
+
+            <!-- Change Password -->
+            <div class="card settings-card">
+                <div class="card-header">
+                    <h2>Change Password</h2>
+                </div>
+                <form id="passwordForm" class="settings-form">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" class="form-control" id="currentPassword"
+                            placeholder="Enter current password">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" class="form-control" id="confirmPassword"
+                            placeholder="Confirm new password">
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-key"></i> Update Password
+                    </button>
+                </form>
+            </div>
+
+            <!-- System Settings -->
+            <div class="card settings-card">
+                <div class="card-header">
+                    <h2>System Settings</h2>
+                </div>
+                <form id="systemForm" class="settings-form">
+                    <div class="form-group">
+                        <label for="academicYear">Academic Year</label>
+                        <select class="form-control" id="academicYear">
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2025-2026" selected>2025-2026</option>
+                            <option value="2026-2027">2026-2027</option>
+                            <option value="2027-2028">2027-2028</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+                        <select class="form-control" id="semester">
+                            <option value="Spring 2025">Spring 2025</option>
+                            <option value="Summer 2025">Summer 2025</option>
+                            <option value="Fall 2025" selected>Fall 2025</option>
+                            <option value="Winter 2026">Winter 2026</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendanceThreshold">Minimum Attendance Threshold (%)</label>
+                        <input type="number" class="form-control" id="attendanceThreshold" min="0" max="100" value="75">
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </form>
+            </div>
+
+            <!-- Notification Preferences -->
+            <div class="card settings-card">
+                <div class="card-header">
+                    <h2>Notification Preferences</h2>
+                </div>
+                <form id="notificationForm" class="settings-form">
+                    <div class="notification-option">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="emailAttendance" checked>
+                            <label for="emailAttendance">
+                                <strong>Email notifications for low attendance alerts</strong>
+                                <p class="option-description">Receive emails when student attendance falls below
+                                    threshold</p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="notification-option">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="emailRegistration" checked>
+                            <label for="emailRegistration">
+                                <strong>New user registration notifications</strong>
+                                <p class="option-description">Get notified when new users join the system</p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="notification-option">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="weeklyReports">
+                            <label for="weeklyReports">
+                                <strong>Weekly summary reports</strong>
+                                <p class="option-description">Receive weekly attendance and performance summaries</p>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-bell"></i> Save Preferences
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="admin-settings-script.js"></script>
+</body>
+
+</html>

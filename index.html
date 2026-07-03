@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance & Result Portal</title>
+    <meta name="description" content="Student Attendance & Result Portal - Select your role to continue">
+    <link rel="stylesheet" href="RoleSelection.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Student Attendance & Result Portal</h1>
+            <p class="subtitle">Select your role to continue</p>
+        </header>
+
+        <main class="cards-container">
+            <!-- Admin Card -->
+            <div class="role-card">
+                <div class="icon-wrapper icon-blue">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L4 6V11C4 16.55 7.84 21.74 12 23C16.16 21.74 20 16.55 20 11V6L12 2Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h2 class="card-title">Admin</h2>
+                <p class="card-description">Manage users, courses, and system settings</p>
+                <a href="Login/admin-login.html" class="login-btn" id="admin-btn"
+                    style="text-decoration: none; text-align: center; display: block;">Login as Admin</a>
+            </div>
+
+            <!-- Teacher Card -->
+            <div class="role-card">
+                <div class="icon-wrapper icon-blue">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 14L21 9L12 4L3 9L12 14Z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 14L12 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M7 11.5V16.5C7 17.9 9 19 12 19C15 19 17 17.9 17 16.5V11.5" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h2 class="card-title">Teacher</h2>
+                <p class="card-description">Mark attendance and upload student results</p>
+                <a href="Login/teacher-login.html" class="login-btn" id="teacher-btn"
+                    style="text-decoration: none; text-align: center; display: block;">Login as Teacher</a>
+            </div>
+
+            <!-- Student Card -->
+            <div class="role-card">
+                <div class="icon-wrapper icon-green">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h2 class="card-title">Student</h2>
+                <p class="card-description">View attendance records and exam results</p>
+                <a href="Login/student-login.html" class="login-btn" id="student-btn"
+                    style="text-decoration: none; text-align: center; display: block;">Login as Student</a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Student Portal. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="RoleSelection.js"></script>
+</body>
+
+</html>

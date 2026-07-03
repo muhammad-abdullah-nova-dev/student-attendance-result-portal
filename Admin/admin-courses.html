@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Courses - Admin Portal</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="admin-users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Manage Users</span>
+            </a>
+            <a href="admin-courses.html" class="nav-item active">
+                <i class="fas fa-book"></i>
+                <span>Manage Courses</span>
+            </a>
+            <a href="admin-reports.html" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </a>
+            <a href="admin-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <div class="user-name" id="adminName">Admin User</div>
+                    <div class="user-role">Admin</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Manage Courses</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list" id="notificationList">
+                            <!-- Notifications loaded dynamically -->
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Manage Courses Page Content -->
+        <div class="page" id="coursesPage">
+            <div class="users-content-section">
+                <div class="section-title-bar">
+                    <div>
+                        <h3 class="section-title">Course Management</h3>
+                        <p class="section-subtitle">Manage all courses and assign teachers</p>
+                    </div>
+                    <button class="btn btn-primary" id="addCourseModalBtn">
+                        <i class="fas fa-plus"></i>
+                        Add Course
+                    </button>
+                </div>
+
+                <div class="users-table-card">
+                    <div class="table-container">
+                        <table class="users-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Course Name</th>
+                                    <th>Course Code</th>
+                                    <th>Teacher Assigned</th>
+                                    <th>Students</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="coursesTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-container" id="coursesPagination">
+                        <div class="pagination-info">
+                            <span id="paginationInfo">Showing 0 courses</span>
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" id="prevPageBtn">Previous</button>
+                            <div id="paginationNumbers" style="display: flex; gap: 5px;">
+                                <!-- Dynamic page numbers -->
+                            </div>
+                            <button class="pagination-btn" id="nextPageBtn">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Course -->
+    <div class="modal" id="courseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="courseModalTitle">Create New Course</h2>
+                <button class="modal-close" id="closeCourseModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="courseForm">
+                <div class="form-group">
+                    <label>Course Name <span class="required">*</span></label>
+                    <input type="text" id="courseName" placeholder="Enter course name" required>
+                </div>
+                <div class="form-group">
+                    <label>Course Code <span class="required">*</span></label>
+                    <input type="text" id="courseCode" placeholder="e.g., CS101" required>
+                </div>
+                <div class="form-group">
+                    <label>Assign Teacher <span class="required">*</span></label>
+                    <select id="courseTeacher" required>
+                        <option value="">Select a teacher</option>
+                        <!-- Dynamic teachers -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="courseDescription" placeholder="Enter course description" rows="3"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Create Course</button>
+                    <button type="button" class="btn btn-secondary" id="cancelCourseBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="admin-courses-script.js"></script>
+</body>
+
+</html>

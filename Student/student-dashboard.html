@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Student Portal</title>
+    <link rel="stylesheet" href="student-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Student Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="student-dashboard.html" class="nav-item active">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="student-attendance.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>My Attendance</span>
+            </a>
+            <a href="student-results.html" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>My Results</span>
+            </a>
+            <a href="student-notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="student-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">SJ</div>
+                <div class="user-info">
+                    <div class="user-name" id="studentName">Sarah Johnson</div>
+                    <div class="user-role">Student</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Student Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">0</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="dropdown-header">
+                            <h4>Notifications</h4>
+                            <a href="student-notifications.html" class="mark-read">View All</a>
+                        </div>
+                        <div class="dropdown-body" id="dropdownNotifications">
+                            <div class="empty-state-small">No new notifications</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="page dashboard-page">
+
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h2 id="welcomeMessage">Welcome back, Student!</h2>
+                <p class="welcome-subtitle">Here's your academic overview</p>
+            </div>
+
+            <div class="dashboard-grid">
+
+                <!-- Left Column -->
+                <div class="dashboard-left">
+
+                    <!-- Overall Attendance Card -->
+                    <div class="card attendance-card mb-24">
+                        <div class="card-header-flex">
+                            <h3>Overall Attendance</h3>
+                            <a href="student-attendance.html" class="view-link">View Details</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="attendance-overview">
+                                <div class="attendance-chart-container">
+                                    <div class="donut-chart" id="attendanceChart">
+                                        <div class="center-text">
+                                            <span class="percentage" id="overallAttendance">0%</span>
+                                            <span class="label">Attendance</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="course-attendance-list" id="courseAttendanceList">
+                                    <!-- Course items will be injected here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Latest Results Card -->
+                    <div class="card results-card">
+                        <div class="card-header-flex">
+                            <h3>Latest Results</h3>
+                            <a href="student-results.html" class="view-link">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="results-list" id="latestResultsList">
+                                <!-- Result items will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column -->
+                <div class="dashboard-right">
+
+                    <!-- Quick Stats -->
+                    <div class="card stats-card mb-24">
+                        <div class="card-header">
+                            <h3>Quick Stats</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="quick-stats-grid">
+                                <div class="stat-box blue">
+                                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                                    <div class="stat-info">
+                                        <span class="stat-value" id="enrolledCoursesCount">0</span>
+                                        <span class="stat-label">Enrolled Courses</span>
+                                    </div>
+                                </div>
+                                <div class="stat-box green">
+                                    <div class="stat-icon"><i class="fas fa-file-invoice"></i></div>
+                                    <div class="stat-info">
+                                        <span class="stat-value" id="resultsPublishedCount">0</span>
+                                        <span class="stat-label">Results Published</span>
+                                    </div>
+                                </div>
+                                <div class="stat-box orange">
+                                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                                    <div class="stat-info">
+                                        <span class="stat-value" id="currentGPA">0.0</span>
+                                        <span class="stat-label">Current GPA</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications -->
+                    <div class="card notifications-card">
+                        <div class="card-header-flex">
+                            <h3>Notifications</h3>
+                            <a href="student-notifications.html" class="view-link">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="notifications-list-widget" id="dashboardNotifications">
+                                <!-- Notification items will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="student-dashboard-script.js"></script>
+</body>

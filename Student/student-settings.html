@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Student Portal</title>
+    <link rel="stylesheet" href="student-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Student Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="student-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="student-attendance.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>My Attendance</span>
+            </a>
+            <a href="student-results.html" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>My Results</span>
+            </a>
+            <a href="student-notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="student-settings.html" class="nav-item active">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">SJ</div>
+                <div class="user-info">
+                    <div class="user-name" id="studentName">Sarah Johnson</div>
+                    <div class="user-role">Student</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Settings</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">0</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="dropdown-header">
+                            <h4>Notifications</h4>
+                            <a href="student-notifications.html" class="mark-read">View All</a>
+                        </div>
+                        <div class="dropdown-body" id="dropdownNotifications">
+                            <div class="empty-state-small">No new notifications</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Settings Content -->
+        <div class="page settings-page">
+
+            <!-- Personal Information Card -->
+            <div class="card settings-card">
+                <div class="settings-card-header">
+                    <h3>Personal Information</h3>
+                </div>
+                <div class="settings-card-body">
+                    <form id="personalInfoForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" class="form-input" placeholder="Sarah">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" class="form-input" placeholder="Johnson">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailAddress">Email Address</label>
+                            <input type="email" id="emailAddress" class="form-input" placeholder="sarah.j@portal.com">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="studentId">Student ID</label>
+                                <input type="text" id="studentId" class="form-input" placeholder="CS2025001" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="tel" id="phoneNumber" class="form-input" placeholder="+1 (555) 234-5678">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" class="form-input">
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Academic Information Card -->
+            <div class="card settings-card">
+                <div class="settings-card-header">
+                    <h3>Academic Information</h3>
+                </div>
+                <div class="settings-card-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="program">Program</label>
+                            <input type="text" id="program" class="form-input" placeholder="Bachelor of Science"
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="major">Major</label>
+                            <input type="text" id="major" class="form-input" placeholder="Computer Science" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="semester">Semester</label>
+                            <input type="text" id="semester" class="form-input" placeholder="Fall 2025" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <input type="text" id="year" class="form-input" placeholder="3rd Year" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change Password Card -->
+            <div class="card settings-card">
+                <div class="settings-card-header">
+                    <h3>Change Password</h3>
+                </div>
+                <div class="settings-card-body">
+                    <form id="changePasswordForm">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" class="form-input"
+                                placeholder="Enter current password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" class="form-input" placeholder="Enter new password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <input type="password" id="confirmPassword" class="form-input"
+                                placeholder="Confirm new password">
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-lock"></i>
+                            Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Notification Preferences Card -->
+            <div class="card settings-card">
+                <div class="settings-card-header">
+                    <h3>Notification Preferences</h3>
+                </div>
+                <div class="settings-card-body">
+                    <form id="notificationPreferencesForm">
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="notifResults" class="checkbox-input" checked>
+                                <span class="checkbox-text">
+                                    <strong>Email notifications for new results</strong>
+                                    <small>Receive emails when new exam results are published</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="notifAttendance" class="checkbox-input" checked>
+                                <span class="checkbox-text">
+                                    <strong>Attendance alerts</strong>
+                                    <small>Get notified when attendance falls below threshold</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="notifAnnouncements" class="checkbox-input">
+                                <span class="checkbox-text">
+                                    <strong>Course announcements</strong>
+                                    <small>Receive notifications for course-related announcements</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="notifExamReminders" class="checkbox-input" checked>
+                                <span class="checkbox-text">
+                                    <strong>Exam schedule reminders</strong>
+                                    <small>Get reminders about upcoming exams</small>
+                                </span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Preferences
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="student-settings-script.js"></script>
+</body>

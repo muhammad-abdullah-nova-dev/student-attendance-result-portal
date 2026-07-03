@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Student Portal</title>
+    <meta name="description" content="Admin login page for Student Attendance & Result Portal">
+    <link rel="stylesheet" href="login-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Back Link -->
+        <a href="../index.html" class="back-link" id="back-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            Back to role selection
+        </a>
+
+        <!-- Login Card -->
+        <div class="login-card">
+            <!-- User Icon -->
+            <div class="user-icon-wrapper">
+                <svg class="user-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 6V11C4 16.55 7.84 21.74 12 23C16.16 21.74 20 16.55 20 11V6L12 2Z"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+
+            <!-- Title -->
+            <h1 class="login-title">Admin Login</h1>
+            <p class="login-subtitle">Enter your credentials to access your portal</p>
+
+            <!-- Login Form -->
+            <form class="login-form" id="login-form">
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        Email Address <span class="required">*</span>
+                    </label>
+                    <input type="email" id="email" class="form-input" placeholder="admin@portal.com" required>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        Password <span class="required">*</span>
+                    </label>
+                    <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember" class="checkbox">
+                        <span class="checkbox-label">Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password" id="forgot-password">Forgot password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="submit-btn">Login</button>
+
+                <!-- Help Text -->
+                <p class="help-text">
+                    Need help? <a href="#" class="support-link" id="support-link">Contact Support</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../api-service.js"></script>
+    <script src="login-script.js"></script>
+</body>
+
+</html>

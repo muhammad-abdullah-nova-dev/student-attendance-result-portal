@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Results - Teacher Portal</title>
+    <link rel="stylesheet" href="teacher-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Teacher Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="teacher-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="teacher-mark-attendance.html" class="nav-item">
+                <i class="fas fa-clipboard-check"></i>
+                <span>Mark Attendance</span>
+            </a>
+            <a href="teacher-attendance-history.html" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Attendance History</span>
+            </a>
+            <a href="teacher-upload-results.html" class="nav-item active">
+                <i class="fas fa-upload"></i>
+                <span>Upload Results</span>
+            </a>
+            <a href="teacher-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">TR</div>
+                <div class="user-info">
+                    <div class="user-name" id="teacherName">John Smith</div>
+                    <div class="user-role">Teacher</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Upload Results</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-blue"><i class="fas fa-info-circle"></i></div>
+                                <div class="notif-content">
+                                    <p>New course assigned: Web Development</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-green"><i class="fas fa-check"></i></div>
+                                <div class="notif-content">
+                                    <p>Attendance report generated successfully</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notif-icon bg-orange"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="notif-content">
+                                    <p>Pending grades submission for CS101</p>
+                                    <span class="notif-time">1 day ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Upload Results Content -->
+        <div class="page" id="uploadResultsPage">
+            <!-- Results Card -->
+            <div class="card">
+                <div class="card-header-flex">
+                    <div class="header-text">
+                        <h3>Student Results</h3>
+                        <p class="subtitle">Manage and upload exam results</p>
+                    </div>
+                    <button class="btn-primary" id="openUploadModalBtn">
+                        <i class="fas fa-plus"></i> Upload New Results
+                    </button>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="courseFilter">Select Course</label>
+                        <select id="courseFilter" class="form-select">
+                            <option value="">Select a course</option>
+                            <!-- Options populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="examTypeFilter">Exam Type</label>
+                        <select id="examTypeFilter" class="form-select">
+                            <option value="Midterm">Midterm</option>
+                            <option value="Final">Final</option>
+                            <option value="Quiz">Quiz</option>
+                            <option value="Assignment">Assignment</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Roll No</th>
+                                <th>Student Name</th>
+                                <th>Marks Obtained</th>
+                                <th>Total Marks</th>
+                                <th>Percentage</th>
+                                <th>Grade</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsTableBody">
+                            <!-- Rows populated dynamically -->
+                        </tbody>
+                    </table>
+                    <div class="table-footer" id="tableFooter">
+                        Please select a course to view results
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upload Results</h3>
+                <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <label for="modalCourseSelect">Course <span class="required">*</span></label>
+                        <select id="modalCourseSelect" class="form-select" required>
+                            <option value="">Select a course</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalExamType">Exam Type <span class="required">*</span></label>
+                        <select id="modalExamType" class="form-select" required>
+                            <option value="Midterm">Midterm</option>
+                            <option value="Final">Final</option>
+                            <option value="Quiz">Quiz</option>
+                            <option value="Assignment">Assignment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalTotalMarks">Total Marks <span class="required">*</span></label>
+                        <input type="number" id="modalTotalMarks" class="form-input" min="1" required>
+                    </div>
+
+                    <div class="student-marks-entry" id="studentMarksEntry">
+                        <!-- Student inputs generated here -->
+                        <div class="empty-state-small">
+                            <p>Select a course to enter marks for students</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" id="cancelUploadBtn">Cancel</button>
+                <button class="btn-save" id="saveResultsBtn">Save Results</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="teacher-upload-results-script.js"></script>
+</body>
+
+</html>

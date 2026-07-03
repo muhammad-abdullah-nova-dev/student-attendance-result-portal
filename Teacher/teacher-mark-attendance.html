@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance - Teacher Portal</title>
+    <link rel="stylesheet" href="teacher-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Teacher Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="teacher-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="teacher-mark-attendance.html" class="nav-item active">
+                <i class="fas fa-clipboard-check"></i>
+                <span>Mark Attendance</span>
+            </a>
+            <a href="teacher-attendance-history.html" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Attendance History</span>
+            </a>
+            <a href="teacher-upload-results.html" class="nav-item">
+                <i class="fas fa-upload"></i>
+                <span>Upload Results</span>
+            </a>
+            <a href="teacher-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">TR</div>
+                <div class="user-info">
+                    <div class="user-name" id="teacherName">John Smith</div>
+                    <div class="user-role">Teacher</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Mark Attendance</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-blue"><i class="fas fa-info-circle"></i></div>
+                                <div class="notif-content">
+                                    <p>New course assigned: Web Development</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-green"><i class="fas fa-check"></i></div>
+                                <div class="notif-content">
+                                    <p>Attendance report generated successfully</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notif-icon bg-orange"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="notif-content">
+                                    <p>Pending grades submission for CS101</p>
+                                    <span class="notif-time">1 day ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Attendance Marking Content -->
+        <div class="page" id="attendancePage">
+            <!-- Attendance Marking Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Attendance Marking</h3>
+                </div>
+                <div class="attendance-form-container">
+                    <!-- Selection Form -->
+                    <div class="attendance-form-row">
+                        <div class="form-group">
+                            <label for="courseSelect">Select Course <span class="required">*</span></label>
+                            <select id="courseSelect" class="form-select" required>
+                                <option value="">Select a course</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateSelect">Select Date <span class="required">*</span></label>
+                            <input type="date" id="dateSelect" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionType">Session Type</label>
+                            <select id="sessionType" class="form-select">
+                                <option value="Lecture">Lecture</option>
+                                <option value="Lab">Lab</option>
+                                <option value="Tutorial">Tutorial</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Stats -->
+                    <div class="attendance-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Total Students</div>
+                            <div class="stat-number total" id="totalStudents">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Present</div>
+                            <div class="stat-number present" id="presentCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Absent</div>
+                            <div class="stat-number absent" id="absentCount">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Attendance Rate</div>
+                            <div class="stat-number rate" id="attendanceRate">0%</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Action Buttons -->
+                    <div class="quick-mark-buttons">
+                        <button class="btn-success" id="markAllPresentBtn">
+                            <i class="fas fa-check-double"></i> Mark All Present
+                        </button>
+                        <button class="btn-danger" id="markAllAbsentBtn">
+                            <i class="fas fa-times"></i> Mark All Absent
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student List -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Student List</h3>
+                </div>
+                <div class="student-attendance-list" id="studentList">
+                    <!-- Students will be loaded dynamically -->
+                    <div class="empty-state">
+                        <i class="fas fa-users"></i>
+                        <p>Please select a course and date to view students</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="attendance-actions" id="attendanceActions" style="display: none;">
+                    <button class="btn-outline" id="cancelBtn">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button class="btn-save" id="saveAttendanceBtn">
+                        <i class="fas fa-save"></i> Save Attendance
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="teacher-mark-attendance-script.js"></script>
+</body>
+
+</html>

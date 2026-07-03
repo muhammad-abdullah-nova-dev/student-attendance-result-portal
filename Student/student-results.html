@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Results - Student Portal</title>
+    <link rel="stylesheet" href="student-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Student Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="student-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="student-attendance.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>My Attendance</span>
+            </a>
+            <a href="student-results.html" class="nav-item active">
+                <i class="fas fa-file-alt"></i>
+                <span>My Results</span>
+            </a>
+            <a href="student-notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="student-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">SJ</div>
+                <div class="user-info">
+                    <div class="user-name" id="studentName">Sarah Johnson</div>
+                    <div class="user-role">Student</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">My Results</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">0</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="dropdown-header">
+                            <h4>Notifications</h4>
+                            <a href="student-notifications.html" class="mark-read">View All</a>
+                        </div>
+                        <div class="dropdown-body" id="dropdownNotifications">
+                            <div class="empty-state-small">No new notifications</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Results Content -->
+        <div class="page results-page">
+
+            <!-- Stats Cards -->
+            <div class="results-stats-grid">
+                <div class="result-stat-card blue">
+                    <div class="result-stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="result-stat-content">
+                        <div class="result-stat-label">Current CGPA</div>
+                        <div class="result-stat-value" id="currentCGPA">0.0</div>
+                        <div class="result-stat-note">Out of 4.0</div>
+                    </div>
+                </div>
+
+                <div class="result-stat-card green">
+                    <div class="result-stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="result-stat-content">
+                        <div class="result-stat-label">Overall Percentage</div>
+                        <div class="result-stat-value" id="overallPercentage">0%</div>
+                        <div class="result-stat-note" id="percentageChange">--</div>
+                    </div>
+                </div>
+
+                <div class="result-stat-card orange">
+                    <div class="result-stat-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="result-stat-content">
+                        <div class="result-stat-label">Courses Completed</div>
+                        <div class="result-stat-value" id="coursesCompleted">0</div>
+                        <div class="result-stat-note">This semester</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="results-grid">
+                <!-- Left: My Courses -->
+                <div class="card results-courses-card">
+                    <div class="card-header">
+                        <h3>My Courses</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="results-courses-list" id="resultsCoursesList">
+                            <!-- Course items will be injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Course Details -->
+                <div class="results-details-container">
+                    <div class="card results-details-card" id="resultsDetailsCard">
+                        <div class="card-header-flex">
+                            <div>
+                                <h3 id="resultsCourseName">Select a course</h3>
+                                <p class="course-code" id="resultsCourseCode"></p>
+                            </div>
+                            <button class="download-btn" id="downloadResultsBtn">
+                                <i class="fas fa-download"></i>
+                                Download Report
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <!-- Course Overall Stats -->
+                            <div class="results-overall-stats" id="resultsOverallStats">
+                                <div class="result-summary-item">
+                                    <div class="summary-label">Total Marks</div>
+                                    <div class="summary-value" id="totalMarks">0/0</div>
+                                </div>
+                                <div class="result-summary-item">
+                                    <div class="summary-label">Percentage</div>
+                                    <div class="summary-value" id="coursePercentage">0%</div>
+                                </div>
+                                <div class="result-summary-item">
+                                    <div class="summary-label">Grade</div>
+                                    <div class="summary-value grade-badge-lg" id="courseGrade">-</div>
+                                </div>
+                                <div class="result-summary-item">
+                                    <div class="summary-label">GPA</div>
+                                    <div class="summary-value" id="courseGPA">0.0</div>
+                                </div>
+                            </div>
+
+                            <!-- Assessment Breakdown -->
+                            <div class="assessment-breakdown-section">
+                                <h4>Assessment Breakdown</h4>
+                                <div class="assessment-table-container">
+                                    <table class="assessment-table" id="assessmentTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Assessment</th>
+                                                <th>Date</th>
+                                                <th>Marks Obtained</th>
+                                                <th>Total Marks</th>
+                                                <th>Percentage</th>
+                                                <th>Grade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="assessmentTableBody">
+                                            <!-- Assessment rows will be injected here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="student-results-script.js"></script>
+</body>

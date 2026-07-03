@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Teacher Portal</title>
+    <link rel="stylesheet" href="teacher-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Teacher Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="teacher-dashboard.html" class="nav-item active">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="teacher-mark-attendance.html" class="nav-item">
+                <i class="fas fa-clipboard-check"></i>
+                <span>Mark Attendance</span>
+            </a>
+            <a href="teacher-attendance-history.html" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Attendance History</span>
+            </a>
+            <a href="teacher-upload-results.html" class="nav-item">
+                <i class="fas fa-upload"></i>
+                <span>Upload Results</span>
+            </a>
+            <a href="teacher-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">TR</div>
+                <div class="user-info">
+                    <div class="user-name" id="teacherName">John Smith</div>
+                    <div class="user-role">Teacher</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Teacher Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-blue"><i class="fas fa-info-circle"></i></div>
+                                <div class="notif-content">
+                                    <p>New course assigned: Web Development</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-green"><i class="fas fa-check"></i></div>
+                                <div class="notif-content">
+                                    <p>Attendance report generated successfully</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notif-icon bg-orange"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="notif-content">
+                                    <p>Pending grades submission for CS101</p>
+                                    <span class="notif-time">1 day ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="page" id="dashboardPage">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h2 id="welcomeMessage">Welcome back, John Smith!</h2>
+                <p class="welcome-subtitle">Here's what's happening with your classes today</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <div class="stat-label">My Courses</div>
+                            <div class="stat-value" id="myCourses">4</div>
+                        </div>
+                        <div class="stat-icon blue">
+                            <i class="fas fa-book"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <div class="stat-label">Today's Classes</div>
+                            <div class="stat-value" id="todaysClasses">2</div>
+                        </div>
+                        <div class="stat-icon green">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <div class="stat-label">Pending Tasks</div>
+                            <div class="stat-value" id="pendingTasks">3</div>
+                        </div>
+                        <div class="stat-icon orange">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-info">
+                            <div class="stat-label">Attendance Marked</div>
+                            <div class="stat-value" id="attendanceMarked">87%</div>
+                        </div>
+                        <div class="stat-icon navy">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Grid: Today's Classes + Pending Tasks -->
+            <div class="dashboard-grid">
+                <!-- Today's Classes -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Today's Classes</h3>
+                    </div>
+                    <div class="classes-list" id="todaysClassesList">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Pending Tasks -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Pending Tasks</h3>
+                    </div>
+                    <div class="tasks-list" id="pendingTasksList">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Quick Actions</h3>
+                </div>
+                <div class="quick-actions-grid">
+                    <div class="action-card" id="markAttendanceAction">
+                        <div class="action-icon blue">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4>Mark Attendance</h4>
+                        <p>Record student attendance for today's classes</p>
+                    </div>
+
+                    <div class="action-card" id="uploadResultsAction">
+                        <div class="action-icon green">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h4>Upload Results</h4>
+                        <p>Upload and manage student exam results</p>
+                    </div>
+
+                    <div class="action-card" id="viewHistoryAction">
+                        <div class="action-icon orange">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4>View History</h4>
+                        <p>Check past attendance records and reports</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="teacher-dashboard-script.js"></script>
+</body>
+
+</html>

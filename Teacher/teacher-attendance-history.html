@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance History - Teacher Portal</title>
+    <link rel="stylesheet" href="teacher-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Teacher Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="teacher-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="teacher-mark-attendance.html" class="nav-item">
+                <i class="fas fa-clipboard-check"></i>
+                <span>Mark Attendance</span>
+            </a>
+            <a href="teacher-attendance-history.html" class="nav-item active">
+                <i class="fas fa-history"></i>
+                <span>Attendance History</span>
+            </a>
+            <a href="teacher-upload-results.html" class="nav-item">
+                <i class="fas fa-upload"></i>
+                <span>Upload Results</span>
+            </a>
+            <a href="teacher-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">TR</div>
+                <div class="user-info">
+                    <div class="user-name" id="teacherName">John Smith</div>
+                    <div class="user-role">Teacher</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Attendance History</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-blue"><i class="fas fa-info-circle"></i></div>
+                                <div class="notif-content">
+                                    <p>New course assigned: Web Development</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-green"><i class="fas fa-check"></i></div>
+                                <div class="notif-content">
+                                    <p>Attendance report generated successfully</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notif-icon bg-orange"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="notif-content">
+                                    <p>Pending grades submission for CS101</p>
+                                    <span class="notif-time">1 day ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- History Content -->
+        <div class="page" id="historyPage">
+            <!-- Records Card -->
+            <div class="card">
+                <div class="card-header-flex">
+                    <div class="header-text">
+                        <h3>Attendance Records</h3>
+                        <p class="subtitle">View and download past attendance records</p>
+                    </div>
+                    <button class="btn-primary" id="exportBtn">
+                        <i class="fas fa-download"></i> Export Records
+                    </button>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="courseFilter">Filter by Course</label>
+                        <select id="courseFilter" class="form-select">
+                            <option value="all">All Courses</option>
+                            <!-- Options populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="dateFilter">Search by Date</label>
+                        <input type="date" id="dateFilter" class="form-input">
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Course</th>
+                                <th>Present</th>
+                                <th>Absent</th>
+                                <th>Attendance Rate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody">
+                            <!-- Rows populated dynamically -->
+                        </tbody>
+                    </table>
+                    <div class="table-footer" id="tableFooter">
+                        Showing <span id="showingCount">0</span> records
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Stats Cards -->
+            <div class="history-stats-grid">
+                <div class="stat-card-simple">
+                    <div class="stat-info">
+                        <div class="stat-label">Average Attendance</div>
+                        <div class="stat-value" id="avgAttendance">0%</div>
+                        <div class="stat-trend positive" id="avgTrend">
+                            <i class="fas fa-arrow-up"></i> <span>0% from last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-icon-box green-light">
+                        <i class="far fa-calendar-check"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card-simple">
+                    <div class="stat-info">
+                        <div class="stat-label">Classes Conducted</div>
+                        <div class="stat-value" id="classesConducted">0</div>
+                        <div class="stat-trend neutral">
+                            <span>This month</span>
+                        </div>
+                    </div>
+                    <div class="stat-icon-box blue-light">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                </div>
+
+                <div class="stat-card-simple">
+                    <div class="stat-info">
+                        <div class="stat-label">Low Attendance Alerts</div>
+                        <div class="stat-value" id="lowAttendance">0</div>
+                        <div class="stat-trend negative">
+                            <span>Requires attention</span>
+                        </div>
+                    </div>
+                    <div class="stat-icon-box red-light">
+                        <i class="far fa-calendar-times"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="teacher-attendance-history-script.js"></script>
+</body>
+
+</html>

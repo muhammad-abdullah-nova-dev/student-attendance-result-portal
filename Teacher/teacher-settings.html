@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Teacher Portal</title>
+    <link rel="stylesheet" href="teacher-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Teacher Portal</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="teacher-dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="teacher-mark-attendance.html" class="nav-item">
+                <i class="fas fa-clipboard-check"></i>
+                <span>Mark Attendance</span>
+            </a>
+            <a href="teacher-attendance-history.html" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Attendance History</span>
+            </a>
+            <a href="teacher-upload-results.html" class="nav-item">
+                <i class="fas fa-upload"></i>
+                <span>Upload Results</span>
+            </a>
+            <a href="teacher-settings.html" class="nav-item active">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">TR</div>
+                <div class="user-info">
+                    <div class="user-name" id="teacherName">John Smith</div>
+                    <div class="user-role">Teacher</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Settings</h1>
+            </div>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-blue"><i class="fas fa-info-circle"></i></div>
+                                <div class="notif-content">
+                                    <p>New course assigned: Web Development</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-green"><i class="fas fa-check"></i></div>
+                                <div class="notif-content">
+                                    <p>Attendance report generated successfully</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notif-icon bg-orange"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="notif-content">
+                                    <p>Pending grades submission for CS101</p>
+                                    <span class="notif-time">1 day ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Settings Content -->
+        <div class="page" id="settingsPage">
+
+            <!-- Profile Information -->
+            <div class="card mb-24">
+                <div class="card-header">
+                    <h3>Profile Information</h3>
+                </div>
+                <div class="card-body">
+                    <form id="profileForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <input type="text" id="department" class="form-input" readonly
+                                style="background-color: var(--bg-gray); cursor: not-allowed;">
+                        </div>
+                        <button type="submit" class="btn-primary mt-16">
+                            <i class="far fa-save"></i> Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Change Password -->
+            <div class="card mb-24">
+                <div class="card-header">
+                    <h3>Change Password</h3>
+                </div>
+                <div class="card-body">
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" class="form-input"
+                                placeholder="Enter current password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" class="form-input" placeholder="Enter new password"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <input type="password" id="confirmPassword" class="form-input"
+                                placeholder="Confirm new password" required>
+                        </div>
+                        <button type="submit" class="btn-primary mt-16">
+                            <i class="far fa-save"></i> Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Notification Preferences -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Notification Preferences</h3>
+                </div>
+                <div class="card-body">
+                    <form id="preferencesForm">
+                        <div class="checkbox-group mb-16">
+                            <input type="checkbox" id="notifClasses" checked>
+                            <div class="checkbox-label">
+                                <span class="title">Email notifications for upcoming classes</span>
+                                <span class="subtitle">Receive reminders 30 minutes before class</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-group mb-16">
+                            <input type="checkbox" id="notifSubmissions" checked>
+                            <div class="checkbox-label">
+                                <span class="title">Student submission notifications</span>
+                                <span class="subtitle">Get notified when students submit assignments</span>
+                            </div>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="notifAlerts">
+                            <div class="checkbox-label">
+                                <span class="title">Low attendance alerts</span>
+                                <span class="subtitle">Receive alerts when student attendance is low</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary mt-24">
+                            <i class="far fa-save"></i> Save Preferences
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../api-service.js"></script>
+    <script src="teacher-settings-script.js"></script>
+</body>
+
+</html>
